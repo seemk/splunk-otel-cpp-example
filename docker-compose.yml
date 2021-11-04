@@ -1,0 +1,11 @@
+services:
+  otelcol:
+    image: quay.io/signalfx/splunk-otel-collector:latest
+    environment:
+      - SPLUNK_REALM=xyz
+      - SPLUNK_ACCESS_TOKEN=abc
+      - SPLUNK_CONFIG=/etc/collector.yaml
+    volumes:
+      - ./collector-config.yml:/etc/collector.yaml
+    ports:
+      - "4317:4317"

@@ -1,0 +1,24 @@
+# Note: this is a simplified collector config, for additional options see:
+# https://docs.splunk.com/Observability/gdi/opentelemetry/resources.html
+receivers:
+  otlp:
+    protocols:
+      grpc:
+        endpoint: 0.0.0.0:4317
+processors:
+  batch:
+exporters:
+  otlphttp:
+    traces_endpoint: "https://ingest.${SPLUNK_REALM}.signalfx.com/v2/trace/otlp"
+    compression: gzip
+    headers:
+      "X-SF-Token": "${SPLUNK_ACCESS_TOKEN}"
+  logging:
+    loglevel: debug
+service:
+  pipelines:
+    traces:
+      receivers: [otlp]
+      processors:
+        - batch
+      exporters: [logging, otlphttp]

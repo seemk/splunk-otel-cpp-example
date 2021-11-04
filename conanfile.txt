@@ -1,0 +1,6 @@
+[requires]
+splunk-opentelemetry/0.3.0
+
+[generators]
+cmake_find_package
+cmake_paths
