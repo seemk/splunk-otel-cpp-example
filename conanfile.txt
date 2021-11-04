@@ -1,5 +1,5 @@
 [requires]
-splunk-opentelemetry/0.3.0
+splunk-opentelemetry-cpp/0.3.0
 
 [generators]
 cmake_find_package
